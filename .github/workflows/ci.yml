@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -22,18 +22,30 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
-        pip install flake8 pytest black
+        make install
 
     - name: Lint with flake8
       run: |
-        flake8 ids706_mini_project --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 ids706_mini_project --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        make lint
 
     - name: Format with black
       run: |
-        black ids706_mini_project
+        make format
 
     - name: Run Tests
       run: |
-        pytest tests
+        make test
+
+    - name: Generate report
+      run: |
+        make run
+
+    - name: Deploy
+      run: |
+        make deploy
+    
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}

@@ -1,13 +1,28 @@
-PYTHON_FILES := ids706_mini_project tests
+PYTHON_FILES := src tests
+
+.PHONY: install format lint run report
 
 install:
-	pip install -r requirements.txt
+	pip install upgrade --pip
+	pip install .[dev]
 
 format:
 	black $(PYTHON_FILES)
 
 lint:
-	flake8 $(PYTHON_FILES)
+	flake8 $(PYTHON_FILES) --count --select=E9,F63,F7,F82 --show-source --statistics
+    flake8 $(PYTHON_FILES) --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+run:
+	python3 src/main.py
+
+
+deploy:
+	git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+	git config --local user.name "github-actions[bot]"
+	git add ./*.pdf
+	git add ./*.png
+	git commit -m "Add report and images"
 
 test:
 	pytest tests

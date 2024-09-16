@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 def parse_requirements(filename):
     with open(filename, "r") as f:
-        return f.read().splitlines()
+        return [line.strip() for line in f if line.strip() and not line.startswith('#')]
 
 setup(
     name='my_python_project',
@@ -10,11 +10,7 @@ setup(
     packages=find_packages(),
     install_requires=parse_requirements('requirements.txt'),
     extras_require={
-        'dev': [
-            'flake8',
-            'black',
-            'pytest',
-        ],
+        'dev': parse_requirements('dev-requirements.txt'),
     },
     entry_points={
         'console_scripts': [
