@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 from io import StringIO
-from src.main import read_dataset, generate_descriptive_stats, generate_visualizations  # Assuming your code is in main.py
+from main import read_dataset, generate_descriptive_stats, generate_visualizations  
 
 class TestPollingPlaceAnalysis(unittest.TestCase):
 
