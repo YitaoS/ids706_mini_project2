@@ -1,5 +1,6 @@
 # IDS706 Mini Project
-![CI Status](https://github.com/YitaoS/ids706_mini_project/actions/workflows/ci.yml/badge.svg)
+![CI Status](https://github.com/YitaoS/ids706_mini_project2/actions/workflows/ci.yml/badge.svg)
+
 ## Getting Started
 
 ### Prerequisites
@@ -11,14 +12,16 @@
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/YitaoS/ids706_mini_project.git
-   cd ids706_mini_project
+   git clone https://github.com/YitaoS/ids706_mini_project2.git
+   cd ids706_mini_project2
    ```
 
 2. **Install dependencies**:
    ```bash
-   pip install -r requirements.txt
+   make install
    ```
+
+   This will upgrade `pip` and install the necessary dependencies for development.
 
 3. **Optional: Build the development environment using DevContainer**:
    - Open the project in Visual Studio Code.
@@ -26,22 +29,51 @@
 
 ### Usage
 
-- To run the main script:
+- **Run the main script**:
   ```bash
-  python ids706_mini_project/main.py
+  make run
   ```
 
-- To run tests:
+- **Run tests**:
   ```bash
   make test
   ```
 
-- To format the code:
+- **Format the code** using `black`:
   ```bash
   make format
   ```
 
-- To lint the code:
+- **Lint the code** using `flake8`:
   ```bash
   make lint
   ```
+
+- **Deploy reports and images**:
+  ```bash
+  make deploy
+  ```
+
+### Additional Commands
+
+- **Check code formatting** (without applying changes):
+  ```bash
+  make check-format
+  ```
+
+- **Clean up `.pyc` files and `__pycache__` directories**:
+  ```bash
+  make clean
+  ```
+
+- **Run the full CI process (linting, testing, and formatting check)**:
+  ```bash
+  make ci
+  ```
+
+### CI/CD Status
+Continuous Integration (CI) checks are automatically run using GitHub Actions. You can view the current status by looking at the badge at the top of this file.
+
+### Contributing
+
+Feel free to fork the repository and submit pull requests for improvements or bug fixes. Ensure your changes pass the linting and test suites before submission.
