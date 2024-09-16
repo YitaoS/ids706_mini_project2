@@ -3,7 +3,7 @@ PYTHON_FILES := src tests
 .PHONY: install format lint run report
 
 install:
-	pip install upgrade --pip
+	pip install --upgrade pip
 	pip install .[dev]
 
 format:
